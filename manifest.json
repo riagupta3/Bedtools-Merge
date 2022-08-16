@@ -21,10 +21,18 @@
           "required": false,
           "default": false,
           "title": "Force strandedness by only merging features on the same strand.",
-          "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand."
+          "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand. This is disabled, by default."
         },
         "S": {
-          
+          # would type be string or something else here
+          "type": "string",
+          "required": false,
+          "default",
+          "format",
+          "title": "Force merge for one specific strand only.",
+          "description": "Follow with + or - to force merge from only the forward or reverse strand, respectively. By default, merging is done without respect to strand."
+        },
+        "
       }
     }
   }
