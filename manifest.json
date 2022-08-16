@@ -32,7 +32,15 @@
           "title": "Force merge for one specific strand only.",
           "description": "Follow with + or - to force merge from only the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
-        "
+        "d": {
+          "type": "integer",
+          "required": false,
+          "default": 0,
+          "title": "Maximum distance between features allowed for features to be merged."
+          "description": "The maximum distance between features allowed for features to be merged. The default is 0, meaning only overlapping and/or book-ended features are merged."
+        },
+        "c": {
+          
       }
     }
   }
