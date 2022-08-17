@@ -10,9 +10,13 @@ Combines overlapping or book-ended features in a BED/GFF/VCF/BAM interval file i
 This tool has the following **required** inputs:
 
 1. **`i`**
+  
+  BED/GFF/VCF/BAM interval file. File containing multiple regions to be merged. 
 
 ## Optional inputs
 
 This tool provides additional configuration through the following **optional** inputs:
 
 # Outputs
+
+## Required outputs
