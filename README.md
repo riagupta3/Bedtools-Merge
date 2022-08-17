@@ -15,10 +15,18 @@ This tool has the following **required** inputs:
 
 ## Optional inputs
 
+This tool provides additional configuration through the following **optional** inputs:
+
 1. **`s`**
 
-This tool provides additional configuration through the following **optional** inputs:
+2. **`S`**
+
+3. **`d`**
+
+4. **`c`** 
 
 # Outputs
 
 ## Required outputs
+
+This tool will **always** provide the following output:
