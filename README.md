@@ -15,6 +15,8 @@ This tool has the following **required** inputs:
 
 ## Optional inputs
 
+1. **`s`**
+
 This tool provides additional configuration through the following **optional** inputs:
 
 # Outputs
