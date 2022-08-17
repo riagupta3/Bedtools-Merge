@@ -59,13 +59,41 @@
           "default": false, 
           "title": "Print the header from the A file prior to results."
         },
-        # is this
+        # confused about this input
         "delim": {
           "type": "string",
           "required": false,
           "default": ";",
           "title": "Specify a custom delimiter for the -nms and -scores concat options."
+        },
+        "outputPrefix": {
+          "type": "string",
+          "required": false,
+          "default": "merged",
+          # saw pattern in getfasta manifest but wasnt sure if it would be the same here
+          "pattern"
+          "title": "Prefix name for the output file."
+        }
+      }
+    },
+    "output": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mergedFile": {
+          "type": "string",
+          "format": "file",
+          "required": true,
+          "title": "File with merged features."
+          # fill in description depending on the type of output file
+          "description"
+        }
       }
     }
+  },
+  "author": "batchx@rgupta",
+  "changeLog"
+  "runtime" {
   }
 }
