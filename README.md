@@ -27,6 +27,8 @@ This tool provides additional configuration through the following **optional** i
 
 3. **`d`**
 
+  The maximum distance between features allowed for features to be merged.
+
 4. **`c`** 
 
 # Outputs
