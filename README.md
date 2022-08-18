@@ -11,7 +11,7 @@ This tool has the following **required** inputs:
 
 1. **`i`**
   
-  BED/GFF/VCF/BAM interval file. File containing multiple regions to be merged. 
+  BED/GFF/VCF/BAM interval file. File containing multiple overlapping or book-ended regions to be merged. 
 
 ## Optional inputs
 
@@ -19,7 +19,11 @@ This tool provides additional configuration through the following **optional** i
 
 1. **`s`**
 
+  Force strandedness by only merging features on the same strand. This feature is disabled by default (default: `false`).
+
 2. **`S`**
+  
+  Force merge for one specific strand only. Follow with a + or - to force merge from only the forward or reverse strand, respectively. Merging is done without respect to strand, by default.
 
 3. **`d`**
 
