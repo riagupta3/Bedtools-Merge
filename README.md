@@ -3,6 +3,13 @@ Combines overlapping or book-ended features in a BED/GFF/VCF/BAM interval file i
 
 # Context
 
+This tool combines features with overlapping or book-ended intervals into a single feature. This interval file can be of the following type:
+
+1. [BED (Browser Extensible Data)](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)
+2. [GFF (General Feature Format)](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)
+3. [VCF (Gene Transfer Format) ](https://genome.ucsc.edu/goldenPath/help/vcf.html)
+4. [BAM (binary version of the SAM (Sequence Alignment/Map) format
+
 # Inputs
 
 ## Required inputs
