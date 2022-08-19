@@ -8,6 +8,7 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
+        # change parameter names
         "i": {
           "type": "string",
           "format": "file",
@@ -24,12 +25,13 @@
           "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand. This is disabled, by default."
         },
         "S": {
-          # would type be string or something else here
           "type": "string",
+          # add enum - forward or reverse
           "required": false,
           "default",
           "format",
           "title": "Force merge for one specific strand only.",
+        # fix description
           "description": "Follow with + or - to force merge from only the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
         "d": {
@@ -39,14 +41,23 @@
           "title": "Maximum distance between features allowed for features to be merged."
           "description": "The maximum distance between features allowed for features to be merged. The default is 0, meaning only overlapping and/or book-ended features are merged."
         },
-        "c": {
-          # would type be number or string or other
-          "type": "
+      # 1 parameter that sepcifies both c and o because they are used together  
+      # parameter is operation
+      # both c and o are required
+      "c": {
+          # add array
+          "type": "array",
           "required": false,
+          "uniqueItems": true,
+          "items": {
+            # just description no format
+            # type is integer
+          }
           "title": "Specify columns from the input file to operate upon"
           "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a comma-delimited list."
         },
         "o": {
+          # inside o parameter, make it array - make it an enum
           "type": "string",
           "required": false,
           "default": "sum",
@@ -59,19 +70,19 @@
           "default": false, 
           "title": "Print the header from the A file prior to results."
         },
-        # confused about this input
+        # look for what kinds of delimiters there are, list them in enum, put comma as default (options: , ; |), want to restrict the use here
         "delim": {
           "type": "string",
           "required": false,
           "default": ";",
-          "title": "Specify a custom delimiter for the -nms and -scores concat options."
+          "title": "Specify a custom delimiter for the -c and -o options."
         },
         "outputPrefix": {
           "type": "string",
           "required": false,
           "default": "merged",
-          # saw pattern in getfasta manifest but wasnt sure if it would be the same here
-          "pattern"
+          # pattern restricts the way output prefix is given
+          "pattern": # copy from getfasta
           "title": "Prefix name for the output file."
         }
       }
@@ -86,8 +97,8 @@
           "format": "file",
           "required": true,
           "title": "File with merged features."
-          # fill in description depending on the type of output file
-          "description"
+          # fill in description depending on the type of output file - BED file <- ask David
+          "description": 
         }
       }
     }
