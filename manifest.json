@@ -9,7 +9,8 @@
       "additionalProperties": false,
       "properties": {
         # change parameter names
-        "i": {
+        # -i
+        "intervalFile": {
           "type": "string",
           "format": "file",
           "required": true,
@@ -17,24 +18,31 @@
           # containing multiple regions? add to description
           "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple regions."
         },
-        "s": {
+        # -s
+        "strandedness": {
           "type": "boolean",
           "required": false,
           "default": false,
           "title": "Force strandedness by only merging features on the same strand.",
           "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand. This is disabled, by default."
         },
-        "S": {
+        # -S
+        "specificStrand": {
           "type": "string",
           # add enum - forward or reverse
           "required": false,
+          "enum": [
+            "forward",
+            "reverse"
+          ],
+          # what would the default be here
           "default",
-          "format",
           "title": "Force merge for one specific strand only.",
         # fix description
-          "description": "Follow with + or - to force merge from only the forward or reverse strand, respectively. By default, merging is done without respect to strand."
+          "description": "Follow with "forward" or "reverse" to force merge from a specific strand. By default, merging is done without respect to strand."
         },
-        "d": {
+        # -d
+        "distance": {
           "type": "integer",
           "required": false,
           "default": 0,
@@ -44,6 +52,11 @@
       # 1 parameter that sepcifies both c and o because they are used together  
       # parameter is operation
       # both c and o are required
+      "operation": {
+        "type": "object",
+        "required": false,
+        #### resume here
+      }
       "c": {
           # add array
           "type": "array",
@@ -71,7 +84,8 @@
           "title": "Print the header from the A file prior to results."
         },
         # look for what kinds of delimiters there are, list them in enum, put comma as default (options: , ; |), want to restrict the use here
-        "delim": {
+        # -delim
+        "delimiter": {
           "type": "string",
           "required": false,
           "default": ";",
@@ -81,8 +95,7 @@
           "type": "string",
           "required": false,
           "default": "merged",
-          # pattern restricts the way output prefix is given
-          "pattern": # copy from getfasta
+          "pattern": "^[a-zA-Z0-9._-]+$",
           "title": "Prefix name for the output file."
         }
       }
@@ -98,7 +111,7 @@
           "required": true,
           "title": "File with merged features."
           # fill in description depending on the type of output file - BED file <- ask David
-          "description": 
+          "description": "BED file with the merged features."
         }
       }
     }
