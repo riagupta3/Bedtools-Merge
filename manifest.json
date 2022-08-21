@@ -52,24 +52,34 @@
       # 1 parameter that sepcifies both c and o because they are used together  
       # parameter is operation
       # both c and o are required
-      "operation": {
+      "operator": {
         "type": "object",
         "required": false,
-        #### resume here
-      }
-      "c": {
-          # add array
-          "type": "array",
-          "required": false,
-          "uniqueItems": true,
-          "items": {
-            # just description no format
-            # type is integer
+        # is the title field still required
+        "title": "Specify operator"
+        "description": "Specify the columns from the input file to operate upon and the operations to be applied."
+        "properties": {
+          # -c
+          "columns": {
+            "type": "array",
+            "required": true,
+            "uniqueItems": true,
+            "items": {
+              "type": "integer",
+            },
+            "title": "Specify columns from the input file to operate upon."
+            "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a column-delimited list."
           }
-          "title": "Specify columns from the input file to operate upon"
-          "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a comma-delimited list."
-        },
-        "o": {
+          # -o
+          "operation": {
+            "type": "array",
+            "required": true,
+            "uniqueItems": true,
+            # resume here
+          }
+        }
+      },
+      "o": {
           # inside o parameter, make it array - make it an enum
           "type": "string",
           "required": false,
