@@ -8,7 +8,6 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        # change parameter names
         # -i
         "intervalFile": {
           "type": "string",
@@ -29,7 +28,6 @@
         # -S
         "specificStrand": {
           "type": "string",
-          # add enum - forward or reverse
           "required": false,
           "enum": [
             "forward",
@@ -49,56 +47,69 @@
           "title": "Maximum distance between features allowed for features to be merged."
           "description": "The maximum distance between features allowed for features to be merged. The default is 0, meaning only overlapping and/or book-ended features are merged."
         },
-      # 1 parameter that sepcifies both c and o because they are used together  
-      # parameter is operation
-      # both c and o are required
-      "operator": {
-        "type": "object",
-        "required": false,
-        # is the title field still required
-        "title": "Specify operator"
-        "description": "Specify the columns from the input file to operate upon and the operations to be applied."
-        "properties": {
-          # -c
-          "columns": {
-            "type": "array",
-            "required": true,
-            "uniqueItems": true,
-            "items": {
-              "type": "integer",
-            },
-            "title": "Specify columns from the input file to operate upon."
-            "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a column-delimited list."
-          }
-          # -o
-          "operation": {
-            "type": "array",
-            "required": true,
-            "uniqueItems": true,
-            # resume here
-          }
-        }
-      },
-      "o": {
-          # inside o parameter, make it array - make it an enum
-          "type": "string",
+        "operator": {
+          "type": "object",
           "required": false,
-          "default": "sum",
-          "title": "Specify the operation that should be applied to -c."
-          "description": "If there is only column, but multiple operations, all operations will be applied on that column. If there is only one operation but mutliple columns, that operation will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order."
+          # is the title field still required
+          "title": "Specify operator and the columns to be operated upon."
+          "description": "Specify the columns from the input file to operate upon and the operations to be applied."
+          "properties": {
+            # -c
+            "columns": {
+              "type": "array",
+              "required": true,
+              "uniqueItems": true,
+              "items": {
+                "type": "integer",
+              },
+              "title": "Specify columns from the input file to operate upon."
+              "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a column-delimited list."
+            }
+            # -o
+            "operation": {
+              "type": "array",
+              "required": true,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "title": "The operation to be applied.",
+                "enum": [
+                  "sum",
+                  "min",
+                  "max",
+                  "absmin",
+                  "absmax",
+                  "mean",
+                  "median",
+                  "collapse",
+                  "distinct",
+                  "count",
+                  "count-distinct"
+                ]
+              },
+              "default": "sum",
+              "title": "Specify the operation that should be applied to -c."
+              "description": "If there is only column, but multiple operations, all operations will be applied on that column. If there is only one operation but mutliple columns, that operation will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order. Default operation is sum."
+            }
+          }
         },
         "header": {
-          "type": "boolean",
-          "required": false,
-          "default": false, 
-          "title": "Print the header from the A file prior to results."
+            "type": "boolean",
+            "required": false,
+            "default": false, 
+            "title": "Print the header from the A file prior to results."
         },
-        # look for what kinds of delimiters there are, list them in enum, put comma as default (options: , ; |), want to restrict the use here
         # -delim
         "delimiter": {
           "type": "string",
           "required": false,
-          "default": ";",
+          # could only find these delimiters
+          "enum": [
+            ",",
+            ";",
+            "|"
+          ],
+          "default": ",",
           "title": "Specify a custom delimiter for the -c and -o options."
         },
         "outputPrefix": {
