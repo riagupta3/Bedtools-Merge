@@ -1,8 +1,7 @@
 {
   "name": "bioinformatics/bedtools/merge",
   "version": "0.0.1",
-  # shorten title
-  "title": "Combines overlapping or book-ended features in an interval file into a single feature which spans all of the combined features, using the bedtools merge function.",
+  "title": "Combines overlapping or book-ended features in an interval file into a single feature.",
   "schema": {
     "input": {
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -51,7 +50,6 @@
         "operator": {
           "type": "object",
           "required": false,
-          # is the title field still required
           "title": "Specify operator and the columns to be operated upon."
           "description": "Specify the columns from the input file to operate upon and the operations to be applied."
           "properties": {
