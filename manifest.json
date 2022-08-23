@@ -1,6 +1,7 @@
 {
   "name": "bioinformatics/bedtools/merge",
   "version": "0.0.1",
+  # shorten title
   "title": "Combines overlapping or book-ended features in an interval file into a single feature which spans all of the combined features, using the bedtools merge function.",
   "schema": {
     "input": {
@@ -84,11 +85,11 @@
                   "collapse",
                   "distinct",
                   "count",
-                  "count-distinct"
+                  "count_distinct"
                 ]
               },
               "default": "sum",
-              "title": "Specify the operation that should be applied to -c."
+              "title": "Specify the operation that should be applied to columns."
               "description": "If there is only column, but multiple operations, all operations will be applied on that column. If there is only one operation but mutliple columns, that operation will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order. Default operation is sum."
             }
           }
@@ -97,20 +98,14 @@
             "type": "boolean",
             "required": false,
             "default": false, 
-            "title": "Print the header from the A file prior to results."
+            "title": "Print the header from the interval file prior to results."
         },
         # -delim
         "delimiter": {
           "type": "string",
           "required": false,
-          # could only find these delimiters
-          "enum": [
-            ",",
-            ";",
-            "|"
-          ],
           "default": ",",
-          "title": "Specify a custom delimiter for the -c and -o options."
+          "title": "Specify a custom delimiter for the operator."
         },
         "outputPrefix": {
           "type": "string",
@@ -131,14 +126,14 @@
           "format": "file",
           "required": true,
           "title": "File with merged features."
-          # fill in description depending on the type of output file - BED file <- ask David
-          "description": "BED file with the merged features."
+          "description": "File with the merged features."
         }
       }
     }
   },
   "author": "batchx@rgupta",
-  "changeLog"
+  "changeLog": "First version",
   "runtime" {
+    "minMem": 1000
   }
 }
