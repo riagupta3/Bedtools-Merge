@@ -56,6 +56,11 @@ if "distance" in parsedJson:
     
 # -c and -o
 if "operator" in parsedJson:
+    c = parsedJson["columns"]
+    operatorString = createTag(parsedJson, "c", "columns") + c + " "
+    o = parsedJson["operation"]
+    operatorString += createTag(parsedJson, "o", "operation") + o + " "
+    optString += operatorString
 
     
 # -header
@@ -80,3 +85,14 @@ if "outputPrefix" in parsedJson:
 # mergedFile
 # change .bed depending on output file type when running the tool
 mergedFile = outputDir + outputPrefix + ".bed"
+
+try:
+    bedtoolsVersionCmd = "bedtools -version"
+    
+# Write output json file
+outputJson = {
+    'mergedFile': mergedFile
+}
+with open('/batchx/output/output.json', 'w+') as json_file:
+    json.dump(outputJson, json_file)
+    
