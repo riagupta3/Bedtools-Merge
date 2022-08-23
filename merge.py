@@ -88,6 +88,11 @@ mergedFile = outputDir + outputPrefix + ".bed"
 
 try:
     bedtoolsVersionCmd = "bedtools -version"
+    subprocess.check_call (bedtoolsVersionCmd, shell=True)
+    cmmd = "bedtools merge"\
+    + "-i" + intervalFile\
+    + optString\
+    # resume here
     
 # Write output json file
 outputJson = {
