@@ -90,9 +90,24 @@ try:
     bedtoolsVersionCmd = "bedtools -version"
     subprocess.check_call (bedtoolsVersionCmd, shell=True)
     cmmd = "bedtools merge"\
-    + "-i" + intervalFile\
-    + optString\
-    # resume here
+        + "-i " + intervalFile\
+        + optString\
+        # would this line be the same or modified
+        + " 3>&1 1>&2 2>&3 >" + mergedFile + "| tee -a /batchx/output/log.txt"
+    print(cmmd, flush=True)
+    subprocess.check_call (cmmd, shell=True)
+
+except subprocess.CalledProcessError as e:
+        print(e)
+        exit(e.returncode)
+except:
+    print("Unexpected error:", sys.exc_info()[0])
+    raise
+
+exitCode = 0
+grepSkipping = subprocess.call(["grep","Skipping.","/batchx/output/log.txt"],stdout=False)
+if grepSkipping==0:
+    exitCode = 7
     
 # Write output json file
 outputJson = {
