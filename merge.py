@@ -4,8 +4,7 @@ import os
 import subprocess
 import sys
 
-# Need Auxillary functions section?
-# currently not using createTag?
+# Auxillary function
 def createTag(inputJson, tag, manifestName):
     parameterString = ""
     if inputJson.get(manifestName):
