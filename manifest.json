@@ -14,8 +14,7 @@
           "format": "file",
           "required": true,
           "title": "Interval file.", 
-          # containing multiple regions? add to description
-          "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple regions."
+          "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple overlapping and/or book-ended features."
         },
         # -s
         "strandedness": {
@@ -36,8 +35,7 @@
           # what would the default be here
           "default",
           "title": "Force merge for one specific strand only.",
-        # fix description
-          "description": "Follow with "forward" or "reverse" to force merge from a specific strand. By default, merging is done without respect to strand."
+          "description": "Follow with 'forward' or 'reverse' to force merge from only the the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
         # -d
         "distance": {
