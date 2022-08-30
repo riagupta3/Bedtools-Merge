@@ -16,7 +16,7 @@ This tool combines features with overlapping or book-ended intervals into a sing
 
 This tool has the following **required** inputs:
 
-1. **`i`**
+1. **`intervalFile`**
   
   BED/GFF/VCF/BAM interval file. File containing multiple overlapping or book-ended regions to be merged. 
 
@@ -24,19 +24,25 @@ This tool has the following **required** inputs:
 
 This tool provides additional configuration through the following **optional** inputs:
 
-1. **`s`**
+1. **`strandedness`**
 
   Force strandedness by only merging features on the same strand. This feature is disabled by default (default: `false`).
 
-2. **`S`**
+2. **`specificStrand`**
   
   Force merge for one specific strand only. Follow with a + or - to force merge from only the forward or reverse strand, respectively. Merging is done without respect to strand, by default.
 
-3. **`d`**
+3. **`distance`**
 
   The maximum distance between features allowed for features to be merged. The default is to merge overlapping and/or book-ended features (default: `0`).
 
-4. **`c`**
+4.  **`operator`**
+    
+    Specify the operation to be used and the columns to be operated upon. 
+    
+    (a) 
+    
+6.  **`c`**
 
   Specify columns from the input file to operate upon (see -o option). A comma-delimited list can be used to specify multiple columns. 
 
@@ -48,11 +54,11 @@ This tool provides additional configuration through the following **optional** i
 
 6. **`header`**
 
-  Print the header from the A file prior to results.
+  Print the header from the interval file prior to results.
 
 7. **`delim`**
 
-  Specify a custom delimiter for the -nms and -scores concat options (default: `;`).
+  Specify a custom delimiter (default: `,`).
 
 8. **`outputPrefix`**
 
