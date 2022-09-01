@@ -40,27 +40,32 @@ This tool provides additional configuration through the following **optional** i
     
     Specify the operation to be used and the columns to be operated upon. 
     
-    (a) 
+    4.1. **`columns`**
+      
+    Specify columns from the input file to be operated upon. A comma-delimited list can be used to specify multiple columns.
     
-6.  **`c`**
+    This is a *required* input if using the **`operator`** input.
+    
+    4.2. **`operation`**
+    
+    Specify the operation that should applied to columns. A comma-delimited list can be used to specify multiple operations. If there is only one column,
+    but multiple operations, all operations will be applied on that column. If there is only one operation specified, but multiple columns, that operation
+    will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order.
+    
+    Valid operations are: sum, min, max, absmin, absmax, mean, median, collapse (i.e., print a delimited list (duplicates allowed)), distinct (i.e., print 
+    a delimited list (NO duplicates allowed)), count, count_distinct (i.e., a count of the unique values in the column). The default operation is `sum`.
+    
+    This is an *optional* input (default: `sum`).
 
-  Specify columns from the input file to operate upon (see -o option). A comma-delimited list can be used to specify multiple columns. 
-
-5. **`o`**
-
-  Specify the operation that should applied to -c. A comma-delimited list can be used to specify multiple operations. If there is only one column, but multiple operations, all operations will be applied on that column. If there is only one operation specified, but multiple columns, that operation will   be  applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order. 
-  
-  Valid operations are: sum, min, max, absmin, absmax, mean, median, collapse (i.e., print a delimited list (duplicates allowed)), distinct (i.e., print a delimited list (NO duplicates allowed)), count, count_distinct (i.e., a count of the unique values in the column). Default: `sum`.
-
-6. **`header`**
+5. **`header`**
 
   Print the header from the interval file prior to results.
 
-7. **`delim`**
+6. **`delim`**
 
   Specify a custom delimiter (default: `,`).
 
-8. **`outputPrefix`**
+7. **`outputPrefix`**
 
   Prefix name for the output file (default: `merged`).
 
