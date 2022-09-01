@@ -92,4 +92,34 @@ chr1	250	500
 chr1	501	1000
 ```
 
+## Upload input data into BatchX
+
+Use the following command to upload this file into your BatchX file system:
+
+```shell
+bx cp test.bed bx://test/bedtools/merge/
+```
+
+## Submit job
+
+Submit a job to merge the overlapping/book-ended features contained in the interval file (`test.bed`).
+
+```shell
+bx submit batchx@
+```
+
+This job generates a BED file with the content shown below:
+
+```shell
+chr1	100	500
+chr1	501	1000
+```
+
+# Links
+
+* [bedtools manual](https://bedtools.readthedocs.io/en/latest/index.html)
+* [bedtools merge documentation](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html)
+* [Bioinformatics file formats](https://genome.ucsc.edu/FAQ/FAQformat.html)
+* [bedtools Github repository](https://github.com/arq5x/bedtools2)
+
 
