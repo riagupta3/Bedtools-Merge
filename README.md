@@ -8,7 +8,7 @@ This tool combines features with overlapping or book-ended intervals into a sing
 1. [BED (Browser Extensible Data)](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)
 2. [GFF (General Feature Format)](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)
 3. [VCF (Gene Transfer Format) ](https://genome.ucsc.edu/goldenPath/help/vcf.html)
-4. [BAM (binary version of the SAM (Sequence Alignment/Map) format
+4. [BAM (binary version of the SAM (Sequence Alignment/Map) format)](https://genome.ucsc.edu/goldenPath/help/bam.html)
 
 # Inputs
 
@@ -40,13 +40,13 @@ This tool provides additional configuration through the following **optional** i
     
     Specify the operation to be used and the columns to be operated upon. 
     
-    4.1. **`columns`**
+    a. **`columns`**
       
     Specify columns from the input file to be operated upon. A comma-delimited list can be used to specify multiple columns.
     
     This is a *required* input if using the **`operator`** input.
     
-    4.2. **`operation`**
+    b. **`operation`**
     
     Specify the operation that should applied to columns. A comma-delimited list can be used to specify multiple operations. If there is only one column,
     but multiple operations, all operations will be applied on that column. If there is only one operation specified, but multiple columns, that operation
@@ -77,10 +77,19 @@ This tool will **always** provide the following output:
 
 1. **`mergedFile`**
 
-  *add description*
+  BED file containing the combined features.
 
 # Example
 
 ## Get input data
+
+Copy the contents below and save them to a file as `test.bed`.
+
+```shell
+chr1	100	200
+chr1	180	250
+chr1	250	500
+chr1	501	1000
+```
 
 
