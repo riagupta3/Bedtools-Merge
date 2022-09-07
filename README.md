@@ -152,7 +152,10 @@ bx cp test.bed bx://test/bedtools/merge/
 Submit a job to merge the overlapping/book-ended features contained in the interval file (`test.bed`).
 
 ```shell
-bx submit batchx@
+bx submit batchx@bioinformatics/bedtools/merge:0.0.1 '{
+  "intervalFile": "bx://test/bedtools/merge",
+  "outputPrefix": "merged"
+}'
 ```
 
 This job generates a BED file with the content shown below:
