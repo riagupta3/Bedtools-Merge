@@ -1,5 +1,8 @@
-# Bedtools-Merge
 Combines overlapping or book-ended features in a BED/GFF/VCF/BAM interval file into a single feature which spans all of the combined features using the bedtools [merge](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html) function.
+
+![Pictoral representation of Bedtools merge tool](picture.png "Pictoral representation of Bedtools merge tool")
+
+*Picture credits: [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html).*
 
 # Context
 
@@ -18,7 +21,16 @@ This tool has the following **required** inputs:
 
 1. **`intervalFile`**
   
-  BED/GFF/VCF/BAM interval file. File containing multiple overlapping or book-ended regions to be merged. 
+  BED/GFF/VCF/BAM interval file. File containing multiple overlapping or book-ended regions to be merged.
+  
+  The following is an example of an interval file. This file will be used in the examples for the optional inputs:
+  
+```shell
+chr1  100  200
+chr1  180  250
+chr1  250  500
+chr1  501  1000
+```
 
 ## Optional inputs
 
@@ -27,14 +39,35 @@ This tool provides additional configuration through the following **optional** i
 1. **`strandedness`**
 
   Force strandedness by only merging features on the same strand. This feature is disabled by default (default: `false`).
+  
+  This is an example of output using this option: 
+  
+```shell
+chr1  100  250
+chr1  501  1000
+chr1  250  500
+```
 
 2. **`specificStrand`**
   
   Force merge for one specific strand only. Follow with a + or - to force merge from only the forward or reverse strand, respectively. Merging is done without respect to strand, by default.
+  
+This is an example of output using this option to merge only from the forward strand: 
+  
+```shell
+chr1  100 250
+chr1  501 1000
+```
 
 3. **`distance`**
 
   The maximum distance between features allowed for features to be merged. The default is to merge overlapping and/or book-ended features (default: `0`).
+  
+  This is an example of output using this option to merge features that are either overlapping or are withing 1000 base pairs of one another: 
+  
+```shell
+chr1  100  200  1000
+```
 
 4.  **`operator`**
     
@@ -56,6 +89,14 @@ This tool provides additional configuration through the following **optional** i
     a delimited list (NO duplicates allowed)), count, count_distinct (i.e., a count of the unique values in the column). The default operation is `sum`.
     
     This is an *optional* input (default: `sum`).
+    
+    
+    This is an example of output using this option on the first column with operation "count": 
+    
+```shell
+chr1  100  500  3
+chr1  501  1000 1
+```
 
 5. **`header`**
 
@@ -64,6 +105,12 @@ This tool provides additional configuration through the following **optional** i
 6. **`delim`**
 
   Specify a custom delimiter (default: `,`).
+  
+  This is an example of output using this option with the delimiter "|" (and operator input for column 4 and operation "collapse"):
+  
+```shell
+chr1  100  500  A1|A2|A3
+```
 
 7. **`outputPrefix`**
 
@@ -122,4 +169,5 @@ chr1	501	1000
 * [Bioinformatics file formats](https://genome.ucsc.edu/FAQ/FAQformat.html)
 * [bedtools Github repository](https://github.com/arq5x/bedtools2)
 
-
+# Tool versions
+bedtools: v2.30.0
