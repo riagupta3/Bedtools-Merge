@@ -8,7 +8,6 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        # -i
         "intervalFile": {
           "type": "string",
           "format": "file",
@@ -16,7 +15,6 @@
           "title": "Interval file.", 
           "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple overlapping and/or book-ended features."
         },
-        # -s
         "strandedness": {
           "type": "boolean",
           "required": false,
@@ -24,7 +22,6 @@
           "title": "Force strandedness by only merging features on the same strand.",
           "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand. This is disabled, by default."
         },
-        # -S
         "specificStrand": {
           "type": "string",
           "required": false,
@@ -37,7 +34,6 @@
           "title": "Force merge for one specific strand only.",
           "description": "Follow with 'forward' or 'reverse' to force merge from only the the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
-        # -d
         "distance": {
           "type": "integer",
           "required": false,
@@ -51,7 +47,6 @@
           "title": "Specify operator and the columns to be operated upon."
           "description": "Specify the columns from the input file to operate upon and the operations to be applied."
           "properties": {
-            # -c
             "columns": {
               "type": "array",
               "required": true,
@@ -62,7 +57,6 @@
               "title": "Specify columns from the input file to operate upon."
               "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a column-delimited list."
             }
-            # -o
             "operation": {
               "type": "array",
               "required": true,
@@ -96,7 +90,6 @@
             "default": false, 
             "title": "Print the header from the interval file prior to results."
         },
-        # -delim
         "delimiter": {
           "type": "string",
           "required": false,
@@ -130,6 +123,6 @@
   "author": "batchx@rgupta",
   "changeLog": "First version",
   "runtime" {
-    "minMem": 1000
+    "minMem": 2000
   }
 }
