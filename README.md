@@ -40,7 +40,7 @@ This tool provides additional configuration through the following **optional** i
 
   Force strandedness by only merging features on the same strand. This feature is disabled by default (default: `false`).
   
-  Here is an example of output using **`strandedness`**: 
+  This is an example of output using **`strandedness`**: 
   
 ```shell
 chr1  100  250
