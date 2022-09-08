@@ -17,7 +17,7 @@ This tool combines features with overlapping or book-ended intervals into a sing
 
 ## Required inputs
 
-This tool has the following **required** inputs:
+This tool has the following **required** input:
 
 1. **`intervalFile`**
   
