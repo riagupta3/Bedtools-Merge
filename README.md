@@ -40,7 +40,7 @@ This tool provides additional configuration through the following **optional** i
 
   Force strandedness by only merging features on the same strand. This feature is disabled by default (default: `false`).
   
-  This is an example of output using this option: 
+  Here is an example of output using **`strandedness`**: 
   
 ```shell
 chr1  100  250
@@ -52,7 +52,7 @@ chr1  250  500
   
   Force merge for one specific strand only. Follow with a + or - to force merge from only the forward or reverse strand, respectively. Merging is done without respect to strand, by default.
   
-This is an example of output using this option to merge only from the forward strand: 
+This is an example of output using **`specificStrand`** to merge only from the forward strand: 
   
 ```shell
 chr1  100 250
@@ -63,7 +63,7 @@ chr1  501 1000
 
   The maximum distance between features allowed for features to be merged. The default is to merge overlapping and/or book-ended features (default: `0`).
   
-  This is an example of output using this option to merge features that are either overlapping or are within 1000 base pairs of one another: 
+  This is an example of output using **`distance`** to merge features that are either overlapping or are within 1000 base pairs of one another: 
   
 ```shell
 chr1  100  200  1000
@@ -91,7 +91,7 @@ chr1  100  200  1000
     This is an *optional* input (default: `sum`).
     
     
-    This is an example of output using this option on the first column with operation "count": 
+    This is an example of output using **`operator`** on the first column with operation "count": 
     
 ```shell
 chr1  100  500  3
@@ -106,7 +106,7 @@ chr1  501  1000 1
 
   Specify a custom delimiter (default: `,`).
   
-  This is an example of output using this option with the delimiter "|" (and operator input for column 4 and operation "collapse"):
+  This is an example of output using **`delim`** with the delimiter "|" (and operator input for column 4 and operation "collapse"):
   
 ```shell
 chr1  100  500  A1|A2|A3
