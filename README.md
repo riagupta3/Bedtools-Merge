@@ -1,9 +1,5 @@
 Combines overlapping or book-ended features in a BED/GFF/VCF/BAM interval file into a single feature which spans all of the combined features using the bedtools [merge](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html) function.
 
-![Pictoral representation of Bedtools merge tool](picture.png "Pictoral representation of Bedtools merge tool")
-
-*Picture credits: [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html).*
-
 # Context
 
 This tool combines features with overlapping or book-ended intervals into a single feature. This interval file can be of the following type:
@@ -12,6 +8,10 @@ This tool combines features with overlapping or book-ended intervals into a sing
 2. [GFF (General Feature Format)](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)
 3. [VCF (Gene Transfer Format) ](https://genome.ucsc.edu/goldenPath/help/vcf.html)
 4. [BAM (binary version of the SAM (Sequence Alignment/Map) format)](https://genome.ucsc.edu/goldenPath/help/bam.html)
+
+![Pictoral representation of Bedtools merge tool](picture.png "Pictoral representation of Bedtools merge tool")
+
+*Picture credits: [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html).*
 
 # Inputs
 
@@ -63,7 +63,7 @@ chr1  501 1000
 
   The maximum distance between features allowed for features to be merged. The default is to merge overlapping and/or book-ended features (default: `0`).
   
-  This is an example of output using this option to merge features that are either overlapping or are withing 1000 base pairs of one another: 
+  This is an example of output using this option to merge features that are either overlapping or are within 1000 base pairs of one another: 
   
 ```shell
 chr1  100  200  1000
