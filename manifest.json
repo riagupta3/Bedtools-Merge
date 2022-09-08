@@ -1,77 +1,104 @@
 {
   "name": "bioinformatics/bedtools/merge",
   "version": "0.0.1",
-  "title": "Combines overlapping or book-ended features in an interval file into a single feature which spans all of the combined features, using the bedtools merge function.",
+  "title": "Combines overlapping or book-ended features in an interval file into a single feature.",
   "schema": {
     "input": {
       "$schema": "http://json-schema.org/draft-07/schema#",
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "i": {
+        "intervalFile": {
           "type": "string",
           "format": "file",
           "required": true,
           "title": "Interval file.", 
-          # containing multiple regions? add to description
-          "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple regions."
+          "description": "[BED](https://genome.ucsc.edu/FAQ/FAQformat.html#format1)/[GFF](https://genome.ucsc.edu/FAQ/FAQformat.html#format3)/[VCF](https://genome.ucsc.edu/goldenPath/help/vcf.html)/[BAM](https://genome.ucsc.edu/goldenPath/help/bam.html)" containing mutliple overlapping and/or book-ended features."
         },
-        "s": {
+        "strandedness": {
           "type": "boolean",
           "required": false,
           "default": false,
           "title": "Force strandedness by only merging features on the same strand.",
           "description": "Only merge intervals that are overlapping/book-ended AND are on the same strand. This is disabled, by default."
         },
-        "S": {
-          # would type be string or something else here
+        "specificStrand": {
           "type": "string",
           "required": false,
-          "default",
-          "format",
+          "enum": [
+            "forward",
+            "reverse"
+          ],
           "title": "Force merge for one specific strand only.",
-          "description": "Follow with + or - to force merge from only the forward or reverse strand, respectively. By default, merging is done without respect to strand."
+          "description": "Follow with 'forward' or 'reverse' to force merge from only the the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
-        "d": {
+        "distance": {
           "type": "integer",
           "required": false,
           "default": 0,
           "title": "Maximum distance between features allowed for features to be merged."
           "description": "The maximum distance between features allowed for features to be merged. The default is 0, meaning only overlapping and/or book-ended features are merged."
         },
-        "c": {
-          # would type be number or string or other
-          "type": "
+        "operator": {
+          "type": "object",
           "required": false,
-          "title": "Specify columns from the input file to operate upon"
-          "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a comma-delimited list."
-        },
-        "o": {
-          "type": "string",
-          "required": false,
-          "default": "sum",
-          "title": "Specify the operation that should be applied to -c."
-          "description": "If there is only column, but multiple operations, all operations will be applied on that column. If there is only one operation but mutliple columns, that operation will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order."
+          "title": "Specify operator and the columns to be operated upon."
+          "description": "Specify the columns from the input file to operate upon and the operations to be applied."
+          "properties": {
+            "columns": {
+              "type": "array",
+              "required": true,
+              "uniqueItems": true,
+              "items": {
+                "type": "integer",
+              },
+              "title": "Specify columns from the input file to operate upon."
+              "description": "Specify columns from the input file to operate upon. Requires use of 'o' operator to specify the operation that should be applied. Multiple columns can be specified in a column-delimited list."
+            }
+            "operation": {
+              "type": "array",
+              "required": true,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "title": "The operation to be applied.",
+                "enum": [
+                  "sum",
+                  "min",
+                  "max",
+                  "absmin",
+                  "absmax",
+                  "mean",
+                  "median",
+                  "collapse",
+                  "distinct",
+                  "count",
+                  "count_distinct"
+                ]
+              },
+              "default": "sum",
+              "title": "Specify the operation that should be applied to columns."
+              "description": "If there is only column, but multiple operations, all operations will be applied on that column. If there is only one operation but mutliple columns, that operation will be applied to all columns. Otherwise, the number of columns must match the the number of operations, and will be applied in respective order. Default operation is sum."
+            }
+          }
         },
         "header": {
-          "type": "boolean",
-          "required": false,
-          "default": false, 
-          "title": "Print the header from the A file prior to results."
+            "type": "boolean",
+            "required": false,
+            "default": false, 
+            "title": "Print the header from the interval file prior to results."
         },
-        # confused about this input
-        "delim": {
+        "delimiter": {
           "type": "string",
           "required": false,
-          "default": ";",
-          "title": "Specify a custom delimiter for the -nms and -scores concat options."
+          "default": ",",
+          "title": "Specify a custom delimiter for the operator."
         },
         "outputPrefix": {
           "type": "string",
           "required": false,
           "default": "merged",
-          # saw pattern in getfasta manifest but wasnt sure if it would be the same here
-          "pattern"
+          "pattern": "^[a-zA-Z0-9._-]+$",
           "title": "Prefix name for the output file."
         }
       }
@@ -86,14 +113,14 @@
           "format": "file",
           "required": true,
           "title": "File with merged features."
-          # fill in description depending on the type of output file
-          "description"
+          "description": "File with the merged features."
         }
       }
     }
   },
   "author": "batchx@rgupta",
-  "changeLog"
+  "changeLog": "First version",
   "runtime" {
+    "minMem": 2000
   }
 }
