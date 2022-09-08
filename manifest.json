@@ -29,8 +29,6 @@
             "forward",
             "reverse"
           ],
-          # what would the default be here
-          "default",
           "title": "Force merge for one specific strand only.",
           "description": "Follow with 'forward' or 'reverse' to force merge from only the the forward or reverse strand, respectively. By default, merging is done without respect to strand."
         },
