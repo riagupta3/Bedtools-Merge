@@ -130,6 +130,8 @@ This tool will **always** provide the following output:
 
 ## Get input data
 
+### Example 1
+
 Copy the contents below and save them to a file as `test.bed`.
 
 ```shell
@@ -139,21 +141,46 @@ chr1	250	500
 chr1	501	1000
 ```
 
+### Example 2
+
+Copy the contents below and save them to a file as `test.gff`.
+
+```shell
+browser position chr22:10000000-10025000
+browser hide all
+track name=regulatory description="TeleGene(tm) Regulatory Regions"
+chr22	TeleGene	enhancer	10000000	10001000	500	+	.	touch1
+chr22	TeleGene	enhancer	10010000	10010100	500	+	.	touch1
+chr22	TeleGene	enhancer	10020000	10025000	500	+	.	touch1
+```
+
 ## Upload input data into BatchX
 
-Use the following command to upload this file into your BatchX file system:
+### Example 1
+
+Use the following command to upload the BED file into your BatchX file system:
 
 ```shell
 bx cp test.bed bx://test/bedtools/merge/
 ```
 
+### Example 2
+
+Same as above, use this command to upload the GFF file into your BatchX file system:
+
+```shell
+bx cp test.gff bx://test/bedtools/merge/
+```
+
 ## Submit job
+
+### Example 1
 
 Submit a job to merge the overlapping/book-ended features contained in the interval file (`test.bed`).
 
 ```shell
 bx submit batchx@bioinformatics/bedtools/merge:0.0.1 '{
-  "intervalFile": "bx://test/bedtools/merge",
+  "intervalFile": "bx://test/bedtools/merge/test.bed",
   "outputPrefix": "merged"
 }'
 ```
@@ -163,6 +190,25 @@ This job generates a BED file with the content shown below:
 ```shell
 chr1	100	500
 chr1	501	1000
+```
+
+### Example 2
+
+Same as example 1,  submit a job for the GFF interval file: 
+
+```shell
+bx submit batchx@bioinformatics/bedtools/merge:0.0.1 '{
+  "intervalFile": "bx://test/bedtools/merge/test.gff",
+  "outputPrefix": "merged"
+}'
+```
+
+This job generates a BED file with the content shown below:
+
+```shell
+chr22 9999999   10001000
+chr22 10009999  10010100
+chr22	10019999  10025000
 ```
 
 # Links
