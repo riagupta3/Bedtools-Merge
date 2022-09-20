@@ -151,6 +151,21 @@ chr22	TeleGene	enhancer	10010000	10010100	500	+	.	touch1
 chr22	TeleGene	enhancer	10020000	10025000	500	+	.	touch1
 ```
 
+### Example 3
+
+Copy the contents below and save them to a file as `test.full.bed`.
+
+```shell
+chr1	10	20	a1	1	+
+chr1	30	40	a2	2	+
+chr1	40	50	a3	3	-
+chr1	45	100	a4	4	+
+chr2	10	20	a1	5	+
+chr2	30	40	a2	6	+
+chr2	42	50	a3	7	+
+chr2	45	100	a4	8	-
+```
+
 ## Upload input data into BatchX
 
 ### Example 1
@@ -169,6 +184,14 @@ Same as above, use this command to upload the GFF file into your BatchX file sys
 bx cp test.gff bx://test/bedtools/merge/
 ```
 
+### Example 3
+
+Use this command to upload the following BED file into your BatchX file system:
+
+```shell
+bx cp test.full.bed bx://test/bedtools/merge/
+```
+
 ## Submit job
 
 ### Example 1
@@ -176,7 +199,7 @@ bx cp test.gff bx://test/bedtools/merge/
 Submit a job to merge the overlapping/book-ended features contained in the interval file (`test.bed`).
 
 ```shell
-bx submit batchx@bioinformatics/bedtools/merge:0.0.1 '{
+bx submit batchx@bioinformatics/bedtools/merge:0.0.2 '{
   "intervalFile": "bx://test/bedtools/merge/test.bed",
   "outputPrefix": "merged"
 }'
@@ -194,7 +217,7 @@ chr1	501	1000
 Same as example 1,  submit a job for the GFF interval file: 
 
 ```shell
-bx submit batchx@bioinformatics/bedtools/merge:0.0.1 '{
+bx submit batchx@bioinformatics/bedtools/merge:0.0.2 '{
   "intervalFile": "bx://test/bedtools/merge/test.gff",
   "outputPrefix": "merged"
 }'
@@ -206,6 +229,40 @@ This job generates a BED file with the content shown below:
 chr22 9999999   10001000
 chr22 10009999  10010100
 chr22	10019999  10025000
+```
+
+### Example 3
+
+Submit a job for the BED file (using all optional inputs):
+
+```shell
+bx submit batchx@bioinformatics/bedtools/merge:0.0.2 '{
+  "intervalFile": "bx://test/bedtools/merge/test.full.bed",
+  "strandedness": true,
+  "specificStrand": "forward",
+  "distance": 100, 
+  "operator": {
+    "columns": [
+      1,
+      2
+    ],
+    "operation": [
+    "count"
+    ]
+  },
+  "header": true,
+  "delimiter": "|",
+  "outputPrefix": "merge1"
+}'
+```
+
+This job generates a BED file with the content shown below:
+
+```shell
+chr1	10	100	3	3
+chr1	40	50	1	1
+chr2	10	50	3	3
+chr2	45	100	1	1
 ```
 
 # Links
