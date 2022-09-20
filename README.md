@@ -9,9 +9,6 @@ This tool combines features with overlapping or book-ended intervals into a sing
 3. [VCF (Gene Transfer Format) ](https://genome.ucsc.edu/goldenPath/help/vcf.html)
 4. [BAM (binary version of the SAM (Sequence Alignment/Map) format)](https://genome.ucsc.edu/goldenPath/help/bam.html)
 
-![Pictoral representation of Bedtools merge tool](picture.png "Pictoral representation of Bedtools merge tool")
-
-*Picture credits: [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/merge.html).*
 
 # Inputs
 
